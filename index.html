@@ -114,6 +114,26 @@ table.grid{width:100%;border-collapse:collapse;min-width:640px}
 .mnm{text-align:right;font-weight:600;font-size:14px}
 .amp{color:var(--muted)}
 
+/* dodatečné služby */
+.extras{border-top:2px dashed var(--line);background:#FBFCFE;padding:12px 16px 14px}
+.ex-head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+.ex-title{font-size:13px;text-transform:uppercase;letter-spacing:.07em;font-weight:800;
+  color:var(--azure-d)}
+.ex-hint{font-size:12.5px;color:var(--muted);font-weight:600}
+.ex-row{display:grid;grid-template-columns:96px minmax(160px,1fr) 2fr;gap:6px 14px;
+  align-items:center;padding:8px 10px;border-radius:10px;margin:5px 0;
+  border:1px solid rgba(11,61,92,.10)}
+.ex-row.food{background:var(--po)}
+.ex-row.trash{background:#EEF3EF}
+.ex-time{font-weight:800;font-variant-numeric:tabular-nums;font-size:13.5px;color:var(--ink);
+  white-space:nowrap}
+.ex-svc{display:flex;flex-direction:column;line-height:1.25}
+.ex-name{font-weight:700;font-size:13.5px}
+.ex-cnt{font-size:11px;color:#fff;background:var(--azure);border-radius:6px;padding:1px 5px;
+  font-weight:800;margin-left:2px}
+.ex-svc em{font-style:normal;font-size:11.5px;color:var(--muted);font-weight:600}
+.ex-people{display:flex;flex-wrap:wrap;gap:3px 6px;font-weight:600;font-size:13.5px}
+
 .foot{margin-top:26px;padding-top:16px;border-top:1px solid var(--line);
   color:var(--muted);font-size:13px;text-align:center}
 
@@ -126,6 +146,8 @@ table.grid{width:100%;border-collapse:collapse;min-width:640px}
   .cards{display:block}
   .daynav a{min-width:0;flex:1 1 18%}
   .ah-list .hp{font-size:12px}
+  .ex-row{grid-template-columns:1fr;gap:3px}
+  .ex-time{font-size:14px}
 }
 
 /* ---- tisk ---- */
@@ -140,8 +162,10 @@ table.grid{width:100%;border-collapse:collapse;min-width:640px}
   .day:first-of-type{page-break-before:avoid}
   .masthead{border-color:#000}
   .dhead{background:#0B3D5C !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-  .grid thead th,.c.hl,.c.za,.c.re,.c.po,.allhands,.duo.res,.mk-reg,.mk-flex{
+  .grid thead th,.c.hl,.c.za,.c.re,.c.po,.allhands,.duo.res,.mk-reg,.mk-flex,
+  .ex-row.food,.ex-row.trash,.ex-cnt{
     -webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .extras{break-inside:avoid}
   .cards{display:none !important}
   .tablewrap{display:block !important;overflow:visible}
   table.grid{min-width:0}
@@ -179,6 +203,7 @@ table.grid{width:100%;border-collapse:collapse;min-width:640px}
         <li>Každá služba je <strong>dvojice (2 lidé)</strong>. Ráno v <strong>7:45 nastupují všichni</strong>, pak se točí směny po 2 hodinách od 9:30 do 20:00.</li>
         <li>Cíl: <strong>po směně volno</strong> – žádné dvě směny po sobě. Kde to nejde (St/Čt ráno), je to tolerováno.</li>
         <li>Stanoviště pod naší režií: <strong>Hlavní · Záložní · Retarder · Pokladna</strong>. Pokladnu obsazujeme z parkingu.</li>
+        <li>Dole u každého dne jsou <strong>dodatečné služby</strong> (odpadky, jídelna–tácy), které zajišťuje parking. Každý je na ně přiřazen jen <strong>mimo svou parkovací směnu</strong> a rovnoměrně přes týden.</li>
       </ul>
     </div>
     <div class="lg">
@@ -303,6 +328,34 @@ table.grid{width:100%;border-collapse:collapse;min-width:640px}
         <span class="mst">Pokladna</span>
         <span class="mnm"><span class="pers">Mikuláš Jiráček</span><span class="amp"> · </span><span class="pers">Maxmilián Jáger<sup class="mk mk-reg">**</sup></span></span>
       </div></div></div>
+
+    <div class="extras">
+      <div class="ex-head">
+        <span class="ex-title">Dodatečné služby</span>
+        <span class="ex-hint">zajišťuje parking — každý jen mimo svou parkovací směnu</span>
+      </div>
+      
+      <div class="ex-row trash">
+        <span class="ex-time">10:00–11:00</span>
+        <span class="ex-svc"><span class="ex-name">Odpadky G + venkovní areál <b class="ex-cnt">2×</b></span></span>
+        <span class="ex-people"><span class="pers">Petr Kroutil</span><span class="amp"> · </span><span class="pers">Vojta Drga</span></span>
+      </div>
+      <div class="ex-row food">
+        <span class="ex-time">12:00–13:30</span>
+        <span class="ex-svc"><span class="ex-name">Jídelna – tácy <b class="ex-cnt">6×</b></span><em>oběd · řídí Patrik Sukovatý</em></span>
+        <span class="ex-people"><span class="pers">Patrik Sukovatý</span><span class="amp"> · </span><span class="pers">Jakub Pernikář<sup class="mk mk-reg">**</sup></span><span class="amp"> · </span><span class="pers">Ondřej Vlček<sup class="mk mk-reg">**</sup></span><span class="amp"> · </span><span class="pers">Maxmilián Jáger<sup class="mk mk-reg">**</sup></span><span class="amp"> · </span><span class="pers">Lukáš Devetter</span><span class="amp"> · </span><span class="pers">Mikuláš Jiráček</span></span>
+      </div>
+      <div class="ex-row trash">
+        <span class="ex-time">15:30–16:30</span>
+        <span class="ex-svc"><span class="ex-name">Odpadky G + venkovní areál <b class="ex-cnt">2×</b></span></span>
+        <span class="ex-people"><span class="pers">Jáchym Kroča<sup class="mk mk-flex">***</sup></span><span class="amp"> · </span><span class="pers">Jakub Pernikář<sup class="mk mk-reg">**</sup></span></span>
+      </div>
+      <div class="ex-row food">
+        <span class="ex-time">18:00–19:00</span>
+        <span class="ex-svc"><span class="ex-name">Jídelna – tácy <b class="ex-cnt">3×</b></span><em>večeře</em></span>
+        <span class="ex-people"><span class="pers">Pavel Kroutil</span><span class="amp"> · </span><span class="pers">Kryštof Fiala</span><span class="amp"> · </span><span class="pers">David Ševčík</span></span>
+      </div>
+    </div>
   </section>
 
   <section class="day" id="day-ct">
@@ -415,6 +468,34 @@ table.grid{width:100%;border-collapse:collapse;min-width:640px}
         <span class="mst">Pokladna</span>
         <span class="mnm"><span class="pers">Mikuláš Jiráček</span><span class="amp"> · </span><span class="pers">Maxmilián Jáger<sup class="mk mk-reg">**</sup></span></span>
       </div></div></div>
+
+    <div class="extras">
+      <div class="ex-head">
+        <span class="ex-title">Dodatečné služby</span>
+        <span class="ex-hint">zajišťuje parking — každý jen mimo svou parkovací směnu</span>
+      </div>
+      
+      <div class="ex-row trash">
+        <span class="ex-time">10:00–11:00</span>
+        <span class="ex-svc"><span class="ex-name">Odpadky G + venkovní areál <b class="ex-cnt">2×</b></span></span>
+        <span class="ex-people"><span class="pers">Petr Kroutil</span><span class="amp"> · </span><span class="pers">Vojta Drga</span></span>
+      </div>
+      <div class="ex-row food">
+        <span class="ex-time">12:00–13:30</span>
+        <span class="ex-svc"><span class="ex-name">Jídelna – tácy <b class="ex-cnt">6×</b></span><em>oběd · řídí Patrik Sukovatý</em></span>
+        <span class="ex-people"><span class="pers">Patrik Sukovatý</span><span class="amp"> · </span><span class="pers">Ondřej Vlček<sup class="mk mk-reg">**</sup></span><span class="amp"> · </span><span class="pers">Maxmilián Jáger<sup class="mk mk-reg">**</sup></span><span class="amp"> · </span><span class="pers">Lukáš Devetter</span><span class="amp"> · </span><span class="pers">Mikuláš Jiráček</span><span class="amp"> · </span><span class="pers">Jáchym Kroča<sup class="mk mk-flex">***</sup></span></span>
+      </div>
+      <div class="ex-row trash">
+        <span class="ex-time">15:30–16:30</span>
+        <span class="ex-svc"><span class="ex-name">Odpadky G + venkovní areál <b class="ex-cnt">2×</b></span></span>
+        <span class="ex-people"><span class="pers">Jakub Pernikář<sup class="mk mk-reg">**</sup></span><span class="amp"> · </span><span class="pers">Ondřej Vlček<sup class="mk mk-reg">**</sup></span></span>
+      </div>
+      <div class="ex-row food">
+        <span class="ex-time">18:00–19:00</span>
+        <span class="ex-svc"><span class="ex-name">Jídelna – tácy <b class="ex-cnt">3×</b></span><em>večeře</em></span>
+        <span class="ex-people"><span class="pers">Karel Devetter</span><span class="amp"> · </span><span class="pers">Cyril Jiráček</span><span class="amp"> · </span><span class="pers">Jakub Čalkovský</span></span>
+      </div>
+    </div>
   </section>
 
   <section class="day" id="day-pa">
@@ -527,6 +608,34 @@ table.grid{width:100%;border-collapse:collapse;min-width:640px}
         <span class="mst">Pokladna</span>
         <span class="mnm"><span class="pers">Jakub Čalkovský</span><span class="amp"> · </span><span class="pers">Cyril Jiráček</span></span>
       </div></div></div>
+
+    <div class="extras">
+      <div class="ex-head">
+        <span class="ex-title">Dodatečné služby</span>
+        <span class="ex-hint">zajišťuje parking — každý jen mimo svou parkovací směnu</span>
+      </div>
+      
+      <div class="ex-row trash">
+        <span class="ex-time">10:00–11:00</span>
+        <span class="ex-svc"><span class="ex-name">Odpadky G + venkovní areál <b class="ex-cnt">2×</b></span></span>
+        <span class="ex-people"><span class="pers">Pavel Kroutil</span><span class="amp"> · </span><span class="pers">Kryštof Fiala</span></span>
+      </div>
+      <div class="ex-row food">
+        <span class="ex-time">12:00–13:30</span>
+        <span class="ex-svc"><span class="ex-name">Jídelna – tácy <b class="ex-cnt">6×</b></span><em>oběd · řídí Patrik Sukovatý</em></span>
+        <span class="ex-people"><span class="pers">Patrik Sukovatý</span><span class="amp"> · </span><span class="pers">David Ševčík</span><span class="amp"> · </span><span class="pers">Karel Devetter</span><span class="amp"> · </span><span class="pers">Cyril Jiráček</span><span class="amp"> · </span><span class="pers">Jakub Čalkovský</span><span class="amp"> · </span><span class="pers">Lukáš Devetter</span></span>
+      </div>
+      <div class="ex-row trash">
+        <span class="ex-time">15:30–16:30</span>
+        <span class="ex-svc"><span class="ex-name">Odpadky G + venkovní areál <b class="ex-cnt">2×</b></span></span>
+        <span class="ex-people"><span class="pers">David Ševčík</span><span class="amp"> · </span><span class="pers">Karel Devetter</span></span>
+      </div>
+      <div class="ex-row food">
+        <span class="ex-time">18:00–19:00</span>
+        <span class="ex-svc"><span class="ex-name">Jídelna – tácy <b class="ex-cnt">3×</b></span><em>večeře</em></span>
+        <span class="ex-people"><span class="pers">Petr Kroutil</span><span class="amp"> · </span><span class="pers">Vojta Drga</span><span class="amp"> · </span><span class="pers">Pavel Kroutil</span></span>
+      </div>
+    </div>
   </section>
 
   <section class="day" id="day-so">
@@ -639,6 +748,34 @@ table.grid{width:100%;border-collapse:collapse;min-width:640px}
         <span class="mst">Pokladna</span>
         <span class="mnm"><span class="pers">Patrik Sukovatý</span><span class="amp"> · </span><span class="pers">Jakub Pernikář<sup class="mk mk-reg">**</sup></span></span>
       </div></div></div>
+
+    <div class="extras">
+      <div class="ex-head">
+        <span class="ex-title">Dodatečné služby</span>
+        <span class="ex-hint">zajišťuje parking — každý jen mimo svou parkovací směnu</span>
+      </div>
+      
+      <div class="ex-row trash">
+        <span class="ex-time">10:00–11:00</span>
+        <span class="ex-svc"><span class="ex-name">Odpadky G + venkovní areál <b class="ex-cnt">2×</b></span></span>
+        <span class="ex-people"><span class="pers">Cyril Jiráček</span><span class="amp"> · </span><span class="pers">Jakub Čalkovský</span></span>
+      </div>
+      <div class="ex-row food">
+        <span class="ex-time">12:00–13:30</span>
+        <span class="ex-svc"><span class="ex-name">Jídelna – tácy <b class="ex-cnt">6×</b></span><em>oběd · řídí Patrik Sukovatý</em></span>
+        <span class="ex-people"><span class="pers">Patrik Sukovatý</span><span class="amp"> · </span><span class="pers">Kryštof Fiala</span><span class="amp"> · </span><span class="pers">Mikuláš Jiráček</span><span class="amp"> · </span><span class="pers">Maxmilián Jáger<sup class="mk mk-reg">**</sup></span><span class="amp"> · </span><span class="pers">Lukáš Devetter</span><span class="amp"> · </span><span class="pers">Vojta Drga</span></span>
+      </div>
+      <div class="ex-row trash">
+        <span class="ex-time">15:30–16:30</span>
+        <span class="ex-svc"><span class="ex-name">Odpadky G + venkovní areál <b class="ex-cnt">2×</b></span></span>
+        <span class="ex-people"><span class="pers">Kryštof Fiala</span><span class="amp"> · </span><span class="pers">Mikuláš Jiráček</span></span>
+      </div>
+      <div class="ex-row food">
+        <span class="ex-time">18:00–19:00</span>
+        <span class="ex-svc"><span class="ex-name">Jídelna – tácy <b class="ex-cnt">3×</b></span><em>večeře</em></span>
+        <span class="ex-people"><span class="pers">Jáchym Kroča<sup class="mk mk-flex">***</sup></span><span class="amp"> · </span><span class="pers">David Ševčík</span><span class="amp"> · </span><span class="pers">Karel Devetter</span></span>
+      </div>
+    </div>
   </section>
 
   <section class="day" id="day-ne">
@@ -751,6 +888,34 @@ table.grid{width:100%;border-collapse:collapse;min-width:640px}
         <span class="mst">Pokladna</span>
         <span class="mnm"><span class="pers">Jakub Čalkovský</span><span class="amp"> · </span><span class="pers">Cyril Jiráček</span></span>
       </div></div></div>
+
+    <div class="extras">
+      <div class="ex-head">
+        <span class="ex-title">Dodatečné služby</span>
+        <span class="ex-hint">zajišťuje parking — každý jen mimo svou parkovací směnu</span>
+      </div>
+      
+      <div class="ex-row trash">
+        <span class="ex-time">10:00–11:00</span>
+        <span class="ex-svc"><span class="ex-name">Odpadky G + venkovní areál <b class="ex-cnt">2×</b></span></span>
+        <span class="ex-people"><span class="pers">Petr Kroutil</span><span class="amp"> · </span><span class="pers">Pavel Kroutil</span></span>
+      </div>
+      <div class="ex-row food">
+        <span class="ex-time">12:00–13:30</span>
+        <span class="ex-svc"><span class="ex-name">Jídelna – tácy <b class="ex-cnt">6×</b></span><em>oběd · řídí Patrik Sukovatý</em></span>
+        <span class="ex-people"><span class="pers">Patrik Sukovatý</span><span class="amp"> · </span><span class="pers">Cyril Jiráček</span><span class="amp"> · </span><span class="pers">Jakub Čalkovský</span><span class="amp"> · </span><span class="pers">Jakub Pernikář<sup class="mk mk-reg">**</sup></span><span class="amp"> · </span><span class="pers">Ondřej Vlček<sup class="mk mk-reg">**</sup></span><span class="amp"> · </span><span class="pers">David Ševčík</span></span>
+      </div>
+      <div class="ex-row trash">
+        <span class="ex-time">15:30–16:30</span>
+        <span class="ex-svc"><span class="ex-name">Odpadky G + venkovní areál <b class="ex-cnt">2×</b></span></span>
+        <span class="ex-people"><span class="pers">Karel Devetter</span><span class="amp"> · </span><span class="pers">Lukáš Devetter</span></span>
+      </div>
+      <div class="ex-row food">
+        <span class="ex-time">18:00–19:00</span>
+        <span class="ex-svc"><span class="ex-name">Jídelna – tácy <b class="ex-cnt">3×</b></span><em>večeře</em></span>
+        <span class="ex-people"><span class="pers">Maxmilián Jáger<sup class="mk mk-reg">**</sup></span><span class="amp"> · </span><span class="pers">Jáchym Kroča<sup class="mk mk-flex">***</sup></span><span class="amp"> · </span><span class="pers">Petr Kroutil</span></span>
+      </div>
+    </div>
   </section>
 
   <footer class="foot">
