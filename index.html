@@ -1,0 +1,761 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Rozpis služeb – Parking · Konference Charis 2026</title>
+<style>*{margin:0;padding:0}
+:root{
+  --azure:#159BD7; --azure-d:#0E6FA6; --azure-dd:#0B3D5C;
+  --ink:#12232E; --muted:#5A6B75;
+  --paper:#F5F8FB; --card:#ffffff; --line:#D8E4EC;
+  --lemon:#F4C531; --lemon-d:#C99A12;
+  --hl:#E9F5FC; --za:#E7F4F1; --re:#EEF1F4; --po:#FEF6DC;
+  --hl-b:#159BD7; --za-b:#1AA79A; --re-b:#7C8B96; --po-b:#E0A81E;
+  --warn:#B4600A;
+}
+*{box-sizing:border-box}
+.page{
+  max-width:1040px;margin:0 auto;padding:28px 20px 60px;
+  color:var(--ink);
+  font-family:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+  font-size:16px;line-height:1.5;
+}
+body{background:var(--paper)}
+h1,h2{text-wrap:balance;margin:0}
+
+/* masthead */
+.masthead{display:flex;align-items:center;gap:22px;flex-wrap:wrap;
+  padding-bottom:20px;border-bottom:3px solid var(--azure)}
+.brand{display:flex;align-items:center;gap:14px}
+.logo{height:52px;width:auto;display:block}
+.pbadge{display:flex}
+.mtitle h1{font-size:30px;font-weight:800;letter-spacing:-.02em;color:var(--azure-dd)}
+.mtitle .sub{margin:2px 0 0;color:var(--muted);font-weight:600;font-size:15px}
+
+/* denní navigace */
+.daynav{display:flex;gap:8px;margin:20px 0 8px;flex-wrap:wrap}
+.daynav a{flex:1 1 auto;min-width:88px;text-decoration:none;text-align:center;
+  padding:9px 6px;border:1px solid var(--line);border-radius:12px;background:var(--card);
+  color:var(--azure-d);font-weight:700;line-height:1.15;transition:transform .12s,box-shadow .12s}
+.daynav a b{display:block;font-size:17px;text-transform:uppercase;letter-spacing:.03em}
+.daynav a span{display:block;font-size:12px;color:var(--muted);font-weight:600;
+  font-variant-numeric:tabular-nums}
+.daynav a:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(11,61,92,.12)}
+.daynav a:focus-visible{outline:3px solid var(--azure);outline-offset:2px}
+
+/* legenda */
+.legend{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:14px 0 30px}
+.lg{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.lg h2{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--azure-d);
+  margin-bottom:8px}
+.lg ul{margin:0;padding-left:18px}
+.lg li{margin:6px 0;font-size:14.5px}
+
+/* den */
+.day{margin:0 0 34px;background:var(--card);border:1px solid var(--line);
+  border-radius:16px;overflow:hidden;box-shadow:0 1px 0 rgba(11,61,92,.04)}
+.dhead{background:linear-gradient(100deg,var(--azure-dd),var(--azure-d));color:#fff;
+  padding:16px 20px}
+.dtitle{display:flex;align-items:baseline;gap:12px}
+.ddow{font-size:22px;font-weight:800;letter-spacing:-.01em}
+.ddate{font-size:16px;font-weight:600;opacity:.85;font-variant-numeric:tabular-nums}
+.dnote{margin:6px 0 0;font-size:13.5px;line-height:1.45;opacity:.94;max-width:78ch}
+
+/* 7:45 */
+.allhands{display:flex;gap:14px;align-items:flex-start;
+  background:var(--po);border-bottom:1px solid var(--line);
+  border-left:5px solid var(--lemon);padding:12px 18px}
+.ah-time{font-weight:800;font-size:18px;color:var(--lemon-d);font-variant-numeric:tabular-nums;
+  min-width:52px}
+.ah-body strong{font-size:14.5px}
+.ah-list{display:flex;flex-wrap:wrap;gap:5px 8px;margin-top:7px}
+.hp{font-size:12.5px;background:#fff;border:1px solid #EAD9A6;border-radius:999px;
+  padding:2px 9px;color:#5b4a12}
+
+/* tabulka */
+.tablewrap{overflow-x:auto}
+table.grid{width:100%;border-collapse:collapse;min-width:640px}
+.grid th,.grid td{border:1px solid var(--line)}
+.grid thead th{font-size:13px;text-transform:uppercase;letter-spacing:.04em;
+  padding:10px 8px;color:#fff;font-weight:700}
+.grid thead th.tcol{background:var(--azure-dd)}
+.grid thead th.hl{background:var(--hl-b)}
+.grid thead th.za{background:var(--za-b)}
+.grid thead th.re{background:var(--re-b)}
+.grid thead th.po{background:var(--po-b)}
+.grid tbody th.tcol{background:#F0F5F9;font-weight:700;font-size:14px;padding:8px 10px;
+  white-space:nowrap;font-variant-numeric:tabular-nums;color:var(--azure-dd);text-align:left}
+.grid td.c{padding:7px;vertical-align:middle}
+.c.hl{background:var(--hl)} .c.za{background:var(--za)}
+.c.re{background:var(--re)} .c.po{background:var(--po)}
+.duo{display:flex;flex-direction:column;gap:2px;border-radius:8px;padding:6px 9px;
+  background:rgba(255,255,255,.75);border:1px solid rgba(11,61,92,.10)}
+.duo .pers{font-size:14px;font-weight:600;line-height:1.25}
+.duo.res{border:1.5px dashed var(--po-b);background:repeating-linear-gradient(-45deg,#fff,#fff 7px,#FEF6DC 7px,#FEF6DC 14px)}
+.mk{font-size:9px;font-weight:800;padding:0 2px;border-radius:4px;margin-left:2px;
+  vertical-align:super;line-height:1}
+.mk-reg{color:#fff;background:var(--azure)}
+.mk-flex{color:#fff;background:var(--po-b)}
+
+/* mobilní karty */
+.cards{display:none}
+.mcard{border-top:1px solid var(--line);padding:10px 16px}
+.mcard:first-child{border-top:0}
+.mtime{font-weight:800;color:var(--azure-dd);font-size:15px;margin-bottom:6px;
+  font-variant-numeric:tabular-nums}
+.mrow{display:flex;justify-content:space-between;align-items:center;gap:10px;
+  padding:7px 10px;border-radius:9px;margin:4px 0;border:1px solid rgba(11,61,92,.08)}
+.mrow.hl{background:var(--hl)} .mrow.za{background:var(--za)}
+.mrow.re{background:var(--re)} .mrow.po{background:var(--po)}
+.mst{font-size:11px;text-transform:uppercase;letter-spacing:.05em;font-weight:800;
+  color:var(--muted);min-width:70px}
+.mnm{text-align:right;font-weight:600;font-size:14px}
+.amp{color:var(--muted)}
+
+.foot{margin-top:26px;padding-top:16px;border-top:1px solid var(--line);
+  color:var(--muted);font-size:13px;text-align:center}
+
+/* ---- responsive: mobil ---- */
+@media (max-width:720px){
+  .page{padding:18px 12px 44px;font-size:15px}
+  .mtitle h1{font-size:23px}
+  .legend{grid-template-columns:1fr}
+  .tablewrap{display:none}
+  .cards{display:block}
+  .daynav a{min-width:0;flex:1 1 18%}
+  .ah-list .hp{font-size:12px}
+}
+
+/* ---- tisk ---- */
+@media print{
+  @page{margin:12mm}
+  body{background:#fff}
+  .page{max-width:none;padding:0}
+  .daynav{display:none}
+  .day{break-inside:avoid;page-break-inside:avoid;box-shadow:none;border:1px solid #999;
+    margin-bottom:10mm}
+  .day{page-break-before:always}
+  .day:first-of-type{page-break-before:avoid}
+  .masthead{border-color:#000}
+  .dhead{background:#0B3D5C !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .grid thead th,.c.hl,.c.za,.c.re,.c.po,.allhands,.duo.res,.mk-reg,.mk-flex{
+    -webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .cards{display:none !important}
+  .tablewrap{display:block !important;overflow:visible}
+  table.grid{min-width:0}
+  .lg,.day{break-inside:avoid}
+  .legend{page-break-after:always}
+  .foot{display:none}
+  a[href]{color:inherit;text-decoration:none}
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="masthead">
+    <div class="brand">
+      <img class="logo" src="data:image/png;base64,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" alt="Konference Charis" />
+      <div class="pbadge" aria-hidden="true">
+        <svg viewBox="0 0 100 100" width="46" height="46" role="img" aria-label="Parking">
+          <rect x="6" y="6" width="88" height="88" rx="20" fill="#159BD7"/>
+          <path d="M35 24h22c11 0 18 7 18 17s-7 17-18 17H46v18H35V24zm11 25h9c4.5 0 7-2.7 7-8s-2.5-8-7-8h-9v16z" fill="#fff"/>
+        </svg>
+      </div>
+    </div>
+    <div class="mtitle">
+      <h1>Rozpis služeb — Parking</h1>
+      <p class="sub">Konference Charis · Brno · 8.–12. července 2026</p>
+    </div>
+  </header>
+
+  <nav class="daynav"><a href="#day-st" class="nav-st"><b>St</b><span>8. 7.</span></a><a href="#day-ct" class="nav-ct"><b>Čt</b><span>9. 7.</span></a><a href="#day-pa" class="nav-pa"><b>Pá</b><span>10. 7.</span></a><a href="#day-so" class="nav-so"><b>So</b><span>11. 7.</span></a><a href="#day-ne" class="nav-ne"><b>Ne</b><span>12. 7.</span></a></nav>
+
+  <section class="legend">
+    <div class="lg">
+      <h2>Jak to funguje</h2>
+      <ul>
+        <li>Každá služba je <strong>dvojice (2 lidé)</strong>. Ráno v <strong>7:45 nastupují všichni</strong>, pak se točí směny po 2 hodinách od 9:30 do 20:00.</li>
+        <li>Cíl: <strong>po směně volno</strong> – žádné dvě směny po sobě. Kde to nejde (St/Čt ráno), je to tolerováno.</li>
+        <li>Stanoviště pod naší režií: <strong>Hlavní · Záložní · Retarder · Pokladna</strong>. Pokladnu obsazujeme z parkingu.</li>
+      </ul>
+    </div>
+    <div class="lg">
+      <h2>Značky &amp; poznámky</h2>
+      <ul>
+        <li><sup class="mk mk-reg">**</sup> <strong>Pernikář, O. Vlček, M. Jáger</strong> – St+Čt dopoledne na registraci, na parking od 13:30.</li>
+        <li><sup class="mk mk-flex">***</sup> <strong>Jáchym Kroča</strong> – nemusí být všechny dny (rodinná oslava).</li>
+        <li><sup class="mk mk-flex">Z</sup> <strong>Adam Beneš</strong> – účast nejistá. Proto tvoří s Jáchymem <strong>rezervní dvojici</strong> (přerušovaný rámeček) – když nedorazí, jejich slot pokryje sousední směna nebo se stanoviště dočasně sloučí.</li>
+        <li><strong>Parking-kasa tým</strong> (Márinka, Alžběta, Tomáš, Venuše, Kateřina H., Alice, Terez) si směny řeší sám – tady není.</li>
+      </ul>
+    </div>
+  </section>
+
+  
+  <section class="day" id="day-st">
+    <header class="dhead">
+      <div class="dtitle"><span class="ddow">Středa</span><span class="ddate">8. 7.</span></div>
+      <p class="dnote">Den příjezdu – ráno silný nával. Pernikář, O. Vlček a M. Jáger jsou dopoledne na registraci, na parking nastupují od 13:30. Ráno (9:30–13:30) mají David+Karel a Jakub+Cyril dvě směny po sobě – tolerováno (od 7:45 jste stejně na místě).</p>
+    </header>
+
+    <div class="allhands">
+      <div class="ah-time">7:45</div>
+      <div class="ah-body">
+        <strong>Všichni – ranní nástup a příprava stanovišť.</strong>
+        <div class="ah-list"><span class="hp">David Ševčík</span><span class="hp">Karel Devetter</span><span class="hp">Patrik Sukovatý</span><span class="hp">Lukáš Devetter</span><span class="hp">Petr Kroutil</span><span class="hp">Vojta Drga</span><span class="hp">Pavel Kroutil</span><span class="hp">Kryštof Fiala</span><span class="hp">Cyril Jiráček</span><span class="hp">Mikuláš Jiráček</span><span class="hp">Jakub Čalkovský</span><span class="hp">Jakub Pernikář<sup class="mk mk-reg">**</sup></span><span class="hp">Ondřej Vlček<sup class="mk mk-reg">**</sup></span><span class="hp">Maxmilián Jáger<sup class="mk mk-reg">**</sup></span><span class="hp">Jáchym Kroča<sup class="mk mk-flex">***</sup></span><span class="hp">Adam Beneš<sup class="mk mk-flex">Z</sup></span></div>
+      </div>
+    </div>
+
+    <div class="tablewrap">
+      <table class="grid">
+        <thead>
+          <tr>
+            <th class="tcol">Čas</th>
+            <th class="hl">Parkoviště hlavní</th>
+            <th class="za">Parkoviště záložní</th>
+            <th class="re">Retarder</th>
+            <th class="po">Pokladna</th>
+          </tr>
+        </thead>
+        <tbody><tr><th class="tcol" scope="row">9:30–11:30</th><td class="c hl"><div class="duo"><span class="pers">David Ševčík</span><span class="pers">Karel Devetter</span></div></td><td class="c za"><div class="duo"><span class="pers">Jakub Čalkovský</span><span class="pers">Cyril Jiráček</span></div></td><td class="c re"><div class="duo"><span class="pers">Patrik Sukovatý</span><span class="pers">Lukáš Devetter</span></div></td><td class="c po"><div class="duo res"><span class="pers">Mikuláš Jiráček</span><span class="pers">Jáchym Kroča<sup class="mk mk-flex">***</sup></span></div></td></tr><tr><th class="tcol" scope="row">11:30–13:30</th><td class="c hl"><div class="duo"><span class="pers">Petr Kroutil</span><span class="pers">Pavel Kroutil</span></div></td><td class="c za"><div class="duo"><span class="pers">Vojta Drga</span><span class="pers">Kryštof Fiala</span></div></td><td class="c re"><div class="duo"><span class="pers">David Ševčík</span><span class="pers">Karel Devetter</span></div></td><td class="c po"><div class="duo"><span class="pers">Jakub Čalkovský</span><span class="pers">Cyril Jiráček</span></div></td></tr><tr><th class="tcol" scope="row">13:30–15:30</th><td class="c hl"><div class="duo"><span class="pers">Patrik Sukovatý</span><span class="pers">Jakub Pernikář<sup class="mk mk-reg">**</sup></span></div></td><td class="c za"><div class="duo"><span class="pers">Lukáš Devetter</span><span class="pers">Ondřej Vlček<sup class="mk mk-reg">**</sup></span></div></td><td class="c re"><div class="duo"><span class="pers">Mikuláš Jiráček</span><span class="pers">Maxmilián Jáger<sup class="mk mk-reg">**</sup></span></div></td><td class="c po"><div class="duo res"><span class="pers">Jáchym Kroča<sup class="mk mk-flex">***</sup></span><span class="pers">Adam Beneš<sup class="mk mk-flex">Z</sup></span></div></td></tr><tr><th class="tcol" scope="row">15:30–17:30</th><td class="c hl"><div class="duo"><span class="pers">David Ševčík</span><span class="pers">Karel Devetter</span></div></td><td class="c za"><div class="duo"><span class="pers">Petr Kroutil</span><span class="pers">Pavel Kroutil</span></div></td><td class="c re"><div class="duo"><span class="pers">Jakub Čalkovský</span><span class="pers">Cyril Jiráček</span></div></td><td class="c po"><div class="duo"><span class="pers">Vojta Drga</span><span class="pers">Kryštof Fiala</span></div></td></tr><tr><th class="tcol" scope="row">17:30–20:00</th><td class="c hl"><div class="duo res"><span class="pers">Jáchym Kroča<sup class="mk mk-flex">***</sup></span><span class="pers">Adam Beneš<sup class="mk mk-flex">Z</sup></span></div></td><td class="c za"><div class="duo"><span class="pers">Patrik Sukovatý</span><span class="pers">Jakub Pernikář<sup class="mk mk-reg">**</sup></span></div></td><td class="c re"><div class="duo"><span class="pers">Lukáš Devetter</span><span class="pers">Ondřej Vlček<sup class="mk mk-reg">**</sup></span></div></td><td class="c po"><div class="duo"><span class="pers">Mikuláš Jiráček</span><span class="pers">Maxmilián Jáger<sup class="mk mk-reg">**</sup></span></div></td></tr></tbody>
+      </table>
+    </div>
+
+    <div class="cards"><div class="mcard"><div class="mtime">9:30–11:30</div>
+      <div class="mrow hl">
+        <span class="mst">Hlavní</span>
+        <span class="mnm"><span class="pers">David Ševčík</span><span class="amp"> · </span><span class="pers">Karel Devetter</span></span>
+      </div>
+      <div class="mrow za">
+        <span class="mst">Záložní</span>
+        <span class="mnm"><span class="pers">Jakub Čalkovský</span><span class="amp"> · </span><span class="pers">Cyril Jiráček</span></span>
+      </div>
+      <div class="mrow re">
+        <span class="mst">Retarder</span>
+        <span class="mnm"><span class="pers">Patrik Sukovatý</span><span class="amp"> · </span><span class="pers">Lukáš Devetter</span></span>
+      </div>
+      <div class="mrow po">
+        <span class="mst">Pokladna</span>
+        <span class="mnm"><span class="pers">Mikuláš Jiráček</span><span class="amp"> · </span><span class="pers">Jáchym Kroča<sup class="mk mk-flex">***</sup></span></span>
+      </div></div><div class="mcard"><div class="mtime">11:30–13:30</div>
+      <div class="mrow hl">
+        <span class="mst">Hlavní</span>
+        <span class="mnm"><span class="pers">Petr Kroutil</span><span class="amp"> · </span><span class="pers">Pavel Kroutil</span></span>
+      </div>
+      <div class="mrow za">
+        <span class="mst">Záložní</span>
+        <span class="mnm"><span class="pers">Vojta Drga</span><span class="amp"> · </span><span class="pers">Kryštof Fiala</span></span>
+      </div>
+      <div class="mrow re">
+        <span class="mst">Retarder</span>
+        <span class="mnm"><span class="pers">David Ševčík</span><span class="amp"> · </span><span class="pers">Karel Devetter</span></span>
+      </div>
+      <div class="mrow po">
+        <span class="mst">Pokladna</span>
+        <span class="mnm"><span class="pers">Jakub Čalkovský</span><span class="amp"> · </span><span class="pers">Cyril Jiráček</span></span>
+      </div></div><div class="mcard"><div class="mtime">13:30–15:30</div>
+      <div class="mrow hl">
+        <span class="mst">Hlavní</span>
+        <span class="mnm"><span class="pers">Patrik Sukovatý</span><span class="amp"> · </span><span class="pers">Jakub Pernikář<sup class="mk mk-reg">**</sup></span></span>
+      </div>
+      <div class="mrow za">
+        <span class="mst">Záložní</span>
+        <span class="mnm"><span class="pers">Lukáš Devetter</span><span class="amp"> · </span><span class="pers">Ondřej Vlček<sup class="mk mk-reg">**</sup></span></span>
+      </div>
+      <div class="mrow re">
+        <span class="mst">Retarder</span>
+        <span class="mnm"><span class="pers">Mikuláš Jiráček</span><span class="amp"> · </span><span class="pers">Maxmilián Jáger<sup class="mk mk-reg">**</sup></span></span>
+      </div>
+      <div class="mrow po">
+        <span class="mst">Pokladna</span>
+        <span class="mnm"><span class="pers">Jáchym Kroča<sup class="mk mk-flex">***</sup></span><span class="amp"> · </span><span class="pers">Adam Beneš<sup class="mk mk-flex">Z</sup></span></span>
+      </div></div><div class="mcard"><div class="mtime">15:30–17:30</div>
+      <div class="mrow hl">
+        <span class="mst">Hlavní</span>
+        <span class="mnm"><span class="pers">David Ševčík</span><span class="amp"> · </span><span class="pers">Karel Devetter</span></span>
+      </div>
+      <div class="mrow za">
+        <span class="mst">Záložní</span>
+        <span class="mnm"><span class="pers">Petr Kroutil</span><span class="amp"> · </span><span class="pers">Pavel Kroutil</span></span>
+      </div>
+      <div class="mrow re">
+        <span class="mst">Retarder</span>
+        <span class="mnm"><span class="pers">Jakub Čalkovský</span><span class="amp"> · </span><span class="pers">Cyril Jiráček</span></span>
+      </div>
+      <div class="mrow po">
+        <span class="mst">Pokladna</span>
+        <span class="mnm"><span class="pers">Vojta Drga</span><span class="amp"> · </span><span class="pers">Kryštof Fiala</span></span>
+      </div></div><div class="mcard"><div class="mtime">17:30–20:00</div>
+      <div class="mrow hl">
+        <span class="mst">Hlavní</span>
+        <span class="mnm"><span class="pers">Jáchym Kroča<sup class="mk mk-flex">***</sup></span><span class="amp"> · </span><span class="pers">Adam Beneš<sup class="mk mk-flex">Z</sup></span></span>
+      </div>
+      <div class="mrow za">
+        <span class="mst">Záložní</span>
+        <span class="mnm"><span class="pers">Patrik Sukovatý</span><span class="amp"> · </span><span class="pers">Jakub Pernikář<sup class="mk mk-reg">**</sup></span></span>
+      </div>
+      <div class="mrow re">
+        <span class="mst">Retarder</span>
+        <span class="mnm"><span class="pers">Lukáš Devetter</span><span class="amp"> · </span><span class="pers">Ondřej Vlček<sup class="mk mk-reg">**</sup></span></span>
+      </div>
+      <div class="mrow po">
+        <span class="mst">Pokladna</span>
+        <span class="mnm"><span class="pers">Mikuláš Jiráček</span><span class="amp"> · </span><span class="pers">Maxmilián Jáger<sup class="mk mk-reg">**</sup></span></span>
+      </div></div></div>
+  </section>
+
+  <section class="day" id="day-ct">
+    <header class="dhead">
+      <div class="dtitle"><span class="ddow">Čtvrtek</span><span class="ddate">9. 7.</span></div>
+      <p class="dnote">Pernikář, O. Vlček a M. Jáger dopoledne na registraci, na parking od 13:30. Back-to-back ráno stejně jako ve středu – tolerováno.</p>
+    </header>
+
+    <div class="allhands">
+      <div class="ah-time">7:45</div>
+      <div class="ah-body">
+        <strong>Všichni – ranní nástup a příprava stanovišť.</strong>
+        <div class="ah-list"><span class="hp">David Ševčík</span><span class="hp">Karel Devetter</span><span class="hp">Patrik Sukovatý</span><span class="hp">Lukáš Devetter</span><span class="hp">Petr Kroutil</span><span class="hp">Vojta Drga</span><span class="hp">Pavel Kroutil</span><span class="hp">Kryštof Fiala</span><span class="hp">Cyril Jiráček</span><span class="hp">Mikuláš Jiráček</span><span class="hp">Jakub Čalkovský</span><span class="hp">Jakub Pernikář<sup class="mk mk-reg">**</sup></span><span class="hp">Ondřej Vlček<sup class="mk mk-reg">**</sup></span><span class="hp">Maxmilián Jáger<sup class="mk mk-reg">**</sup></span><span class="hp">Jáchym Kroča<sup class="mk mk-flex">***</sup></span><span class="hp">Adam Beneš<sup class="mk mk-flex">Z</sup></span></div>
+      </div>
+    </div>
+
+    <div class="tablewrap">
+      <table class="grid">
+        <thead>
+          <tr>
+            <th class="tcol">Čas</th>
+            <th class="hl">Parkoviště hlavní</th>
+            <th class="za">Parkoviště záložní</th>
+            <th class="re">Retarder</th>
+            <th class="po">Pokladna</th>
+          </tr>
+        </thead>
+        <tbody><tr><th class="tcol" scope="row">9:30–11:30</th><td class="c hl"><div class="duo"><span class="pers">David Ševčík</span><span class="pers">Karel Devetter</span></div></td><td class="c za"><div class="duo"><span class="pers">Jakub Čalkovský</span><span class="pers">Cyril Jiráček</span></div></td><td class="c re"><div class="duo"><span class="pers">Patrik Sukovatý</span><span class="pers">Lukáš Devetter</span></div></td><td class="c po"><div class="duo res"><span class="pers">Mikuláš Jiráček</span><span class="pers">Jáchym Kroča<sup class="mk mk-flex">***</sup></span></div></td></tr><tr><th class="tcol" scope="row">11:30–13:30</th><td class="c hl"><div class="duo"><span class="pers">Petr Kroutil</span><span class="pers">Pavel Kroutil</span></div></td><td class="c za"><div class="duo"><span class="pers">Vojta Drga</span><span class="pers">Kryštof Fiala</span></div></td><td class="c re"><div class="duo"><span class="pers">David Ševčík</span><span class="pers">Karel Devetter</span></div></td><td class="c po"><div class="duo"><span class="pers">Jakub Čalkovský</span><span class="pers">Cyril Jiráček</span></div></td></tr><tr><th class="tcol" scope="row">13:30–15:30</th><td class="c hl"><div class="duo"><span class="pers">Patrik Sukovatý</span><span class="pers">Jakub Pernikář<sup class="mk mk-reg">**</sup></span></div></td><td class="c za"><div class="duo"><span class="pers">Lukáš Devetter</span><span class="pers">Ondřej Vlček<sup class="mk mk-reg">**</sup></span></div></td><td class="c re"><div class="duo"><span class="pers">Mikuláš Jiráček</span><span class="pers">Maxmilián Jáger<sup class="mk mk-reg">**</sup></span></div></td><td class="c po"><div class="duo res"><span class="pers">Jáchym Kroča<sup class="mk mk-flex">***</sup></span><span class="pers">Adam Beneš<sup class="mk mk-flex">Z</sup></span></div></td></tr><tr><th class="tcol" scope="row">15:30–17:30</th><td class="c hl"><div class="duo"><span class="pers">David Ševčík</span><span class="pers">Karel Devetter</span></div></td><td class="c za"><div class="duo"><span class="pers">Petr Kroutil</span><span class="pers">Pavel Kroutil</span></div></td><td class="c re"><div class="duo"><span class="pers">Jakub Čalkovský</span><span class="pers">Cyril Jiráček</span></div></td><td class="c po"><div class="duo"><span class="pers">Vojta Drga</span><span class="pers">Kryštof Fiala</span></div></td></tr><tr><th class="tcol" scope="row">17:30–20:00</th><td class="c hl"><div class="duo res"><span class="pers">Jáchym Kroča<sup class="mk mk-flex">***</sup></span><span class="pers">Adam Beneš<sup class="mk mk-flex">Z</sup></span></div></td><td class="c za"><div class="duo"><span class="pers">Patrik Sukovatý</span><span class="pers">Jakub Pernikář<sup class="mk mk-reg">**</sup></span></div></td><td class="c re"><div class="duo"><span class="pers">Lukáš Devetter</span><span class="pers">Ondřej Vlček<sup class="mk mk-reg">**</sup></span></div></td><td class="c po"><div class="duo"><span class="pers">Mikuláš Jiráček</span><span class="pers">Maxmilián Jáger<sup class="mk mk-reg">**</sup></span></div></td></tr></tbody>
+      </table>
+    </div>
+
+    <div class="cards"><div class="mcard"><div class="mtime">9:30–11:30</div>
+      <div class="mrow hl">
+        <span class="mst">Hlavní</span>
+        <span class="mnm"><span class="pers">David Ševčík</span><span class="amp"> · </span><span class="pers">Karel Devetter</span></span>
+      </div>
+      <div class="mrow za">
+        <span class="mst">Záložní</span>
+        <span class="mnm"><span class="pers">Jakub Čalkovský</span><span class="amp"> · </span><span class="pers">Cyril Jiráček</span></span>
+      </div>
+      <div class="mrow re">
+        <span class="mst">Retarder</span>
+        <span class="mnm"><span class="pers">Patrik Sukovatý</span><span class="amp"> · </span><span class="pers">Lukáš Devetter</span></span>
+      </div>
+      <div class="mrow po">
+        <span class="mst">Pokladna</span>
+        <span class="mnm"><span class="pers">Mikuláš Jiráček</span><span class="amp"> · </span><span class="pers">Jáchym Kroča<sup class="mk mk-flex">***</sup></span></span>
+      </div></div><div class="mcard"><div class="mtime">11:30–13:30</div>
+      <div class="mrow hl">
+        <span class="mst">Hlavní</span>
+        <span class="mnm"><span class="pers">Petr Kroutil</span><span class="amp"> · </span><span class="pers">Pavel Kroutil</span></span>
+      </div>
+      <div class="mrow za">
+        <span class="mst">Záložní</span>
+        <span class="mnm"><span class="pers">Vojta Drga</span><span class="amp"> · </span><span class="pers">Kryštof Fiala</span></span>
+      </div>
+      <div class="mrow re">
+        <span class="mst">Retarder</span>
+        <span class="mnm"><span class="pers">David Ševčík</span><span class="amp"> · </span><span class="pers">Karel Devetter</span></span>
+      </div>
+      <div class="mrow po">
+        <span class="mst">Pokladna</span>
+        <span class="mnm"><span class="pers">Jakub Čalkovský</span><span class="amp"> · </span><span class="pers">Cyril Jiráček</span></span>
+      </div></div><div class="mcard"><div class="mtime">13:30–15:30</div>
+      <div class="mrow hl">
+        <span class="mst">Hlavní</span>
+        <span class="mnm"><span class="pers">Patrik Sukovatý</span><span class="amp"> · </span><span class="pers">Jakub Pernikář<sup class="mk mk-reg">**</sup></span></span>
+      </div>
+      <div class="mrow za">
+        <span class="mst">Záložní</span>
+        <span class="mnm"><span class="pers">Lukáš Devetter</span><span class="amp"> · </span><span class="pers">Ondřej Vlček<sup class="mk mk-reg">**</sup></span></span>
+      </div>
+      <div class="mrow re">
+        <span class="mst">Retarder</span>
+        <span class="mnm"><span class="pers">Mikuláš Jiráček</span><span class="amp"> · </span><span class="pers">Maxmilián Jáger<sup class="mk mk-reg">**</sup></span></span>
+      </div>
+      <div class="mrow po">
+        <span class="mst">Pokladna</span>
+        <span class="mnm"><span class="pers">Jáchym Kroča<sup class="mk mk-flex">***</sup></span><span class="amp"> · </span><span class="pers">Adam Beneš<sup class="mk mk-flex">Z</sup></span></span>
+      </div></div><div class="mcard"><div class="mtime">15:30–17:30</div>
+      <div class="mrow hl">
+        <span class="mst">Hlavní</span>
+        <span class="mnm"><span class="pers">David Ševčík</span><span class="amp"> · </span><span class="pers">Karel Devetter</span></span>
+      </div>
+      <div class="mrow za">
+        <span class="mst">Záložní</span>
+        <span class="mnm"><span class="pers">Petr Kroutil</span><span class="amp"> · </span><span class="pers">Pavel Kroutil</span></span>
+      </div>
+      <div class="mrow re">
+        <span class="mst">Retarder</span>
+        <span class="mnm"><span class="pers">Jakub Čalkovský</span><span class="amp"> · </span><span class="pers">Cyril Jiráček</span></span>
+      </div>
+      <div class="mrow po">
+        <span class="mst">Pokladna</span>
+        <span class="mnm"><span class="pers">Vojta Drga</span><span class="amp"> · </span><span class="pers">Kryštof Fiala</span></span>
+      </div></div><div class="mcard"><div class="mtime">17:30–20:00</div>
+      <div class="mrow hl">
+        <span class="mst">Hlavní</span>
+        <span class="mnm"><span class="pers">Jáchym Kroča<sup class="mk mk-flex">***</sup></span><span class="amp"> · </span><span class="pers">Adam Beneš<sup class="mk mk-flex">Z</sup></span></span>
+      </div>
+      <div class="mrow za">
+        <span class="mst">Záložní</span>
+        <span class="mnm"><span class="pers">Patrik Sukovatý</span><span class="amp"> · </span><span class="pers">Jakub Pernikář<sup class="mk mk-reg">**</sup></span></span>
+      </div>
+      <div class="mrow re">
+        <span class="mst">Retarder</span>
+        <span class="mnm"><span class="pers">Lukáš Devetter</span><span class="amp"> · </span><span class="pers">Ondřej Vlček<sup class="mk mk-reg">**</sup></span></span>
+      </div>
+      <div class="mrow po">
+        <span class="mst">Pokladna</span>
+        <span class="mnm"><span class="pers">Mikuláš Jiráček</span><span class="amp"> · </span><span class="pers">Maxmilián Jáger<sup class="mk mk-reg">**</sup></span></span>
+      </div></div></div>
+  </section>
+
+  <section class="day" id="day-pa">
+    <header class="dhead">
+      <div class="dtitle"><span class="ddow">Pátek</span><span class="ddate">10. 7.</span></div>
+      <p class="dnote">Plný stav – všichni celý den. Žádné dvě směny po sobě.</p>
+    </header>
+
+    <div class="allhands">
+      <div class="ah-time">7:45</div>
+      <div class="ah-body">
+        <strong>Všichni – ranní nástup a příprava stanovišť.</strong>
+        <div class="ah-list"><span class="hp">David Ševčík</span><span class="hp">Karel Devetter</span><span class="hp">Patrik Sukovatý</span><span class="hp">Lukáš Devetter</span><span class="hp">Petr Kroutil</span><span class="hp">Vojta Drga</span><span class="hp">Pavel Kroutil</span><span class="hp">Kryštof Fiala</span><span class="hp">Cyril Jiráček</span><span class="hp">Mikuláš Jiráček</span><span class="hp">Jakub Čalkovský</span><span class="hp">Jakub Pernikář<sup class="mk mk-reg">**</sup></span><span class="hp">Ondřej Vlček<sup class="mk mk-reg">**</sup></span><span class="hp">Maxmilián Jáger<sup class="mk mk-reg">**</sup></span><span class="hp">Jáchym Kroča<sup class="mk mk-flex">***</sup></span><span class="hp">Adam Beneš<sup class="mk mk-flex">Z</sup></span></div>
+      </div>
+    </div>
+
+    <div class="tablewrap">
+      <table class="grid">
+        <thead>
+          <tr>
+            <th class="tcol">Čas</th>
+            <th class="hl">Parkoviště hlavní</th>
+            <th class="za">Parkoviště záložní</th>
+            <th class="re">Retarder</th>
+            <th class="po">Pokladna</th>
+          </tr>
+        </thead>
+        <tbody><tr><th class="tcol" scope="row">9:30–11:30</th><td class="c hl"><div class="duo"><span class="pers">David Ševčík</span><span class="pers">Karel Devetter</span></div></td><td class="c za"><div class="duo"><span class="pers">Jakub Čalkovský</span><span class="pers">Cyril Jiráček</span></div></td><td class="c re"><div class="duo"><span class="pers">Patrik Sukovatý</span><span class="pers">Jakub Pernikář<sup class="mk mk-reg">**</sup></span></div></td><td class="c po"><div class="duo"><span class="pers">Lukáš Devetter</span><span class="pers">Ondřej Vlček<sup class="mk mk-reg">**</sup></span></div></td></tr><tr><th class="tcol" scope="row">11:30–13:30</th><td class="c hl"><div class="duo"><span class="pers">Petr Kroutil</span><span class="pers">Pavel Kroutil</span></div></td><td class="c za"><div class="duo"><span class="pers">Vojta Drga</span><span class="pers">Kryštof Fiala</span></div></td><td class="c re"><div class="duo"><span class="pers">Mikuláš Jiráček</span><span class="pers">Maxmilián Jáger<sup class="mk mk-reg">**</sup></span></div></td><td class="c po"><div class="duo res"><span class="pers">Jáchym Kroča<sup class="mk mk-flex">***</sup></span><span class="pers">Adam Beneš<sup class="mk mk-flex">Z</sup></span></div></td></tr><tr><th class="tcol" scope="row">13:30–15:30</th><td class="c hl"><div class="duo"><span class="pers">Lukáš Devetter</span><span class="pers">Ondřej Vlček<sup class="mk mk-reg">**</sup></span></div></td><td class="c za"><div class="duo"><span class="pers">David Ševčík</span><span class="pers">Karel Devetter</span></div></td><td class="c re"><div class="duo"><span class="pers">Jakub Čalkovský</span><span class="pers">Cyril Jiráček</span></div></td><td class="c po"><div class="duo"><span class="pers">Patrik Sukovatý</span><span class="pers">Jakub Pernikář<sup class="mk mk-reg">**</sup></span></div></td></tr><tr><th class="tcol" scope="row">15:30–17:30</th><td class="c hl"><div class="duo res"><span class="pers">Jáchym Kroča<sup class="mk mk-flex">***</sup></span><span class="pers">Adam Beneš<sup class="mk mk-flex">Z</sup></span></div></td><td class="c za"><div class="duo"><span class="pers">Petr Kroutil</span><span class="pers">Pavel Kroutil</span></div></td><td class="c re"><div class="duo"><span class="pers">Vojta Drga</span><span class="pers">Kryštof Fiala</span></div></td><td class="c po"><div class="duo"><span class="pers">Mikuláš Jiráček</span><span class="pers">Maxmilián Jáger<sup class="mk mk-reg">**</sup></span></div></td></tr><tr><th class="tcol" scope="row">17:30–20:00</th><td class="c hl"><div class="duo"><span class="pers">Patrik Sukovatý</span><span class="pers">Jakub Pernikář<sup class="mk mk-reg">**</sup></span></div></td><td class="c za"><div class="duo"><span class="pers">Lukáš Devetter</span><span class="pers">Ondřej Vlček<sup class="mk mk-reg">**</sup></span></div></td><td class="c re"><div class="duo"><span class="pers">David Ševčík</span><span class="pers">Karel Devetter</span></div></td><td class="c po"><div class="duo"><span class="pers">Jakub Čalkovský</span><span class="pers">Cyril Jiráček</span></div></td></tr></tbody>
+      </table>
+    </div>
+
+    <div class="cards"><div class="mcard"><div class="mtime">9:30–11:30</div>
+      <div class="mrow hl">
+        <span class="mst">Hlavní</span>
+        <span class="mnm"><span class="pers">David Ševčík</span><span class="amp"> · </span><span class="pers">Karel Devetter</span></span>
+      </div>
+      <div class="mrow za">
+        <span class="mst">Záložní</span>
+        <span class="mnm"><span class="pers">Jakub Čalkovský</span><span class="amp"> · </span><span class="pers">Cyril Jiráček</span></span>
+      </div>
+      <div class="mrow re">
+        <span class="mst">Retarder</span>
+        <span class="mnm"><span class="pers">Patrik Sukovatý</span><span class="amp"> · </span><span class="pers">Jakub Pernikář<sup class="mk mk-reg">**</sup></span></span>
+      </div>
+      <div class="mrow po">
+        <span class="mst">Pokladna</span>
+        <span class="mnm"><span class="pers">Lukáš Devetter</span><span class="amp"> · </span><span class="pers">Ondřej Vlček<sup class="mk mk-reg">**</sup></span></span>
+      </div></div><div class="mcard"><div class="mtime">11:30–13:30</div>
+      <div class="mrow hl">
+        <span class="mst">Hlavní</span>
+        <span class="mnm"><span class="pers">Petr Kroutil</span><span class="amp"> · </span><span class="pers">Pavel Kroutil</span></span>
+      </div>
+      <div class="mrow za">
+        <span class="mst">Záložní</span>
+        <span class="mnm"><span class="pers">Vojta Drga</span><span class="amp"> · </span><span class="pers">Kryštof Fiala</span></span>
+      </div>
+      <div class="mrow re">
+        <span class="mst">Retarder</span>
+        <span class="mnm"><span class="pers">Mikuláš Jiráček</span><span class="amp"> · </span><span class="pers">Maxmilián Jáger<sup class="mk mk-reg">**</sup></span></span>
+      </div>
+      <div class="mrow po">
+        <span class="mst">Pokladna</span>
+        <span class="mnm"><span class="pers">Jáchym Kroča<sup class="mk mk-flex">***</sup></span><span class="amp"> · </span><span class="pers">Adam Beneš<sup class="mk mk-flex">Z</sup></span></span>
+      </div></div><div class="mcard"><div class="mtime">13:30–15:30</div>
+      <div class="mrow hl">
+        <span class="mst">Hlavní</span>
+        <span class="mnm"><span class="pers">Lukáš Devetter</span><span class="amp"> · </span><span class="pers">Ondřej Vlček<sup class="mk mk-reg">**</sup></span></span>
+      </div>
+      <div class="mrow za">
+        <span class="mst">Záložní</span>
+        <span class="mnm"><span class="pers">David Ševčík</span><span class="amp"> · </span><span class="pers">Karel Devetter</span></span>
+      </div>
+      <div class="mrow re">
+        <span class="mst">Retarder</span>
+        <span class="mnm"><span class="pers">Jakub Čalkovský</span><span class="amp"> · </span><span class="pers">Cyril Jiráček</span></span>
+      </div>
+      <div class="mrow po">
+        <span class="mst">Pokladna</span>
+        <span class="mnm"><span class="pers">Patrik Sukovatý</span><span class="amp"> · </span><span class="pers">Jakub Pernikář<sup class="mk mk-reg">**</sup></span></span>
+      </div></div><div class="mcard"><div class="mtime">15:30–17:30</div>
+      <div class="mrow hl">
+        <span class="mst">Hlavní</span>
+        <span class="mnm"><span class="pers">Jáchym Kroča<sup class="mk mk-flex">***</sup></span><span class="amp"> · </span><span class="pers">Adam Beneš<sup class="mk mk-flex">Z</sup></span></span>
+      </div>
+      <div class="mrow za">
+        <span class="mst">Záložní</span>
+        <span class="mnm"><span class="pers">Petr Kroutil</span><span class="amp"> · </span><span class="pers">Pavel Kroutil</span></span>
+      </div>
+      <div class="mrow re">
+        <span class="mst">Retarder</span>
+        <span class="mnm"><span class="pers">Vojta Drga</span><span class="amp"> · </span><span class="pers">Kryštof Fiala</span></span>
+      </div>
+      <div class="mrow po">
+        <span class="mst">Pokladna</span>
+        <span class="mnm"><span class="pers">Mikuláš Jiráček</span><span class="amp"> · </span><span class="pers">Maxmilián Jáger<sup class="mk mk-reg">**</sup></span></span>
+      </div></div><div class="mcard"><div class="mtime">17:30–20:00</div>
+      <div class="mrow hl">
+        <span class="mst">Hlavní</span>
+        <span class="mnm"><span class="pers">Patrik Sukovatý</span><span class="amp"> · </span><span class="pers">Jakub Pernikář<sup class="mk mk-reg">**</sup></span></span>
+      </div>
+      <div class="mrow za">
+        <span class="mst">Záložní</span>
+        <span class="mnm"><span class="pers">Lukáš Devetter</span><span class="amp"> · </span><span class="pers">Ondřej Vlček<sup class="mk mk-reg">**</sup></span></span>
+      </div>
+      <div class="mrow re">
+        <span class="mst">Retarder</span>
+        <span class="mnm"><span class="pers">David Ševčík</span><span class="amp"> · </span><span class="pers">Karel Devetter</span></span>
+      </div>
+      <div class="mrow po">
+        <span class="mst">Pokladna</span>
+        <span class="mnm"><span class="pers">Jakub Čalkovský</span><span class="amp"> · </span><span class="pers">Cyril Jiráček</span></span>
+      </div></div></div>
+  </section>
+
+  <section class="day" id="day-so">
+    <header class="dhead">
+      <div class="dtitle"><span class="ddow">Sobota</span><span class="ddate">11. 7.</span></div>
+      <p class="dnote">Plný stav. Rozložení směn je oproti pátku prohozené, ať se prostřídá i zátěž.</p>
+    </header>
+
+    <div class="allhands">
+      <div class="ah-time">7:45</div>
+      <div class="ah-body">
+        <strong>Všichni – ranní nástup a příprava stanovišť.</strong>
+        <div class="ah-list"><span class="hp">David Ševčík</span><span class="hp">Karel Devetter</span><span class="hp">Patrik Sukovatý</span><span class="hp">Lukáš Devetter</span><span class="hp">Petr Kroutil</span><span class="hp">Vojta Drga</span><span class="hp">Pavel Kroutil</span><span class="hp">Kryštof Fiala</span><span class="hp">Cyril Jiráček</span><span class="hp">Mikuláš Jiráček</span><span class="hp">Jakub Čalkovský</span><span class="hp">Jakub Pernikář<sup class="mk mk-reg">**</sup></span><span class="hp">Ondřej Vlček<sup class="mk mk-reg">**</sup></span><span class="hp">Maxmilián Jáger<sup class="mk mk-reg">**</sup></span><span class="hp">Jáchym Kroča<sup class="mk mk-flex">***</sup></span><span class="hp">Adam Beneš<sup class="mk mk-flex">Z</sup></span></div>
+      </div>
+    </div>
+
+    <div class="tablewrap">
+      <table class="grid">
+        <thead>
+          <tr>
+            <th class="tcol">Čas</th>
+            <th class="hl">Parkoviště hlavní</th>
+            <th class="za">Parkoviště záložní</th>
+            <th class="re">Retarder</th>
+            <th class="po">Pokladna</th>
+          </tr>
+        </thead>
+        <tbody><tr><th class="tcol" scope="row">9:30–11:30</th><td class="c hl"><div class="duo"><span class="pers">Vojta Drga</span><span class="pers">Kryštof Fiala</span></div></td><td class="c za"><div class="duo"><span class="pers">Patrik Sukovatý</span><span class="pers">Jakub Pernikář<sup class="mk mk-reg">**</sup></span></div></td><td class="c re"><div class="duo"><span class="pers">Lukáš Devetter</span><span class="pers">Ondřej Vlček<sup class="mk mk-reg">**</sup></span></div></td><td class="c po"><div class="duo"><span class="pers">Mikuláš Jiráček</span><span class="pers">Maxmilián Jáger<sup class="mk mk-reg">**</sup></span></div></td></tr><tr><th class="tcol" scope="row">11:30–13:30</th><td class="c hl"><div class="duo"><span class="pers">David Ševčík</span><span class="pers">Karel Devetter</span></div></td><td class="c za"><div class="duo"><span class="pers">Petr Kroutil</span><span class="pers">Pavel Kroutil</span></div></td><td class="c re"><div class="duo"><span class="pers">Jakub Čalkovský</span><span class="pers">Cyril Jiráček</span></div></td><td class="c po"><div class="duo res"><span class="pers">Jáchym Kroča<sup class="mk mk-flex">***</sup></span><span class="pers">Adam Beneš<sup class="mk mk-flex">Z</sup></span></div></td></tr><tr><th class="tcol" scope="row">13:30–15:30</th><td class="c hl"><div class="duo"><span class="pers">Mikuláš Jiráček</span><span class="pers">Maxmilián Jáger<sup class="mk mk-reg">**</sup></span></div></td><td class="c za"><div class="duo"><span class="pers">Vojta Drga</span><span class="pers">Kryštof Fiala</span></div></td><td class="c re"><div class="duo"><span class="pers">Patrik Sukovatý</span><span class="pers">Jakub Pernikář<sup class="mk mk-reg">**</sup></span></div></td><td class="c po"><div class="duo"><span class="pers">Lukáš Devetter</span><span class="pers">Ondřej Vlček<sup class="mk mk-reg">**</sup></span></div></td></tr><tr><th class="tcol" scope="row">15:30–17:30</th><td class="c hl"><div class="duo res"><span class="pers">Jáchym Kroča<sup class="mk mk-flex">***</sup></span><span class="pers">Adam Beneš<sup class="mk mk-flex">Z</sup></span></div></td><td class="c za"><div class="duo"><span class="pers">David Ševčík</span><span class="pers">Karel Devetter</span></div></td><td class="c re"><div class="duo"><span class="pers">Petr Kroutil</span><span class="pers">Pavel Kroutil</span></div></td><td class="c po"><div class="duo"><span class="pers">Jakub Čalkovský</span><span class="pers">Cyril Jiráček</span></div></td></tr><tr><th class="tcol" scope="row">17:30–20:00</th><td class="c hl"><div class="duo"><span class="pers">Lukáš Devetter</span><span class="pers">Ondřej Vlček<sup class="mk mk-reg">**</sup></span></div></td><td class="c za"><div class="duo"><span class="pers">Mikuláš Jiráček</span><span class="pers">Maxmilián Jáger<sup class="mk mk-reg">**</sup></span></div></td><td class="c re"><div class="duo"><span class="pers">Vojta Drga</span><span class="pers">Kryštof Fiala</span></div></td><td class="c po"><div class="duo"><span class="pers">Patrik Sukovatý</span><span class="pers">Jakub Pernikář<sup class="mk mk-reg">**</sup></span></div></td></tr></tbody>
+      </table>
+    </div>
+
+    <div class="cards"><div class="mcard"><div class="mtime">9:30–11:30</div>
+      <div class="mrow hl">
+        <span class="mst">Hlavní</span>
+        <span class="mnm"><span class="pers">Vojta Drga</span><span class="amp"> · </span><span class="pers">Kryštof Fiala</span></span>
+      </div>
+      <div class="mrow za">
+        <span class="mst">Záložní</span>
+        <span class="mnm"><span class="pers">Patrik Sukovatý</span><span class="amp"> · </span><span class="pers">Jakub Pernikář<sup class="mk mk-reg">**</sup></span></span>
+      </div>
+      <div class="mrow re">
+        <span class="mst">Retarder</span>
+        <span class="mnm"><span class="pers">Lukáš Devetter</span><span class="amp"> · </span><span class="pers">Ondřej Vlček<sup class="mk mk-reg">**</sup></span></span>
+      </div>
+      <div class="mrow po">
+        <span class="mst">Pokladna</span>
+        <span class="mnm"><span class="pers">Mikuláš Jiráček</span><span class="amp"> · </span><span class="pers">Maxmilián Jáger<sup class="mk mk-reg">**</sup></span></span>
+      </div></div><div class="mcard"><div class="mtime">11:30–13:30</div>
+      <div class="mrow hl">
+        <span class="mst">Hlavní</span>
+        <span class="mnm"><span class="pers">David Ševčík</span><span class="amp"> · </span><span class="pers">Karel Devetter</span></span>
+      </div>
+      <div class="mrow za">
+        <span class="mst">Záložní</span>
+        <span class="mnm"><span class="pers">Petr Kroutil</span><span class="amp"> · </span><span class="pers">Pavel Kroutil</span></span>
+      </div>
+      <div class="mrow re">
+        <span class="mst">Retarder</span>
+        <span class="mnm"><span class="pers">Jakub Čalkovský</span><span class="amp"> · </span><span class="pers">Cyril Jiráček</span></span>
+      </div>
+      <div class="mrow po">
+        <span class="mst">Pokladna</span>
+        <span class="mnm"><span class="pers">Jáchym Kroča<sup class="mk mk-flex">***</sup></span><span class="amp"> · </span><span class="pers">Adam Beneš<sup class="mk mk-flex">Z</sup></span></span>
+      </div></div><div class="mcard"><div class="mtime">13:30–15:30</div>
+      <div class="mrow hl">
+        <span class="mst">Hlavní</span>
+        <span class="mnm"><span class="pers">Mikuláš Jiráček</span><span class="amp"> · </span><span class="pers">Maxmilián Jáger<sup class="mk mk-reg">**</sup></span></span>
+      </div>
+      <div class="mrow za">
+        <span class="mst">Záložní</span>
+        <span class="mnm"><span class="pers">Vojta Drga</span><span class="amp"> · </span><span class="pers">Kryštof Fiala</span></span>
+      </div>
+      <div class="mrow re">
+        <span class="mst">Retarder</span>
+        <span class="mnm"><span class="pers">Patrik Sukovatý</span><span class="amp"> · </span><span class="pers">Jakub Pernikář<sup class="mk mk-reg">**</sup></span></span>
+      </div>
+      <div class="mrow po">
+        <span class="mst">Pokladna</span>
+        <span class="mnm"><span class="pers">Lukáš Devetter</span><span class="amp"> · </span><span class="pers">Ondřej Vlček<sup class="mk mk-reg">**</sup></span></span>
+      </div></div><div class="mcard"><div class="mtime">15:30–17:30</div>
+      <div class="mrow hl">
+        <span class="mst">Hlavní</span>
+        <span class="mnm"><span class="pers">Jáchym Kroča<sup class="mk mk-flex">***</sup></span><span class="amp"> · </span><span class="pers">Adam Beneš<sup class="mk mk-flex">Z</sup></span></span>
+      </div>
+      <div class="mrow za">
+        <span class="mst">Záložní</span>
+        <span class="mnm"><span class="pers">David Ševčík</span><span class="amp"> · </span><span class="pers">Karel Devetter</span></span>
+      </div>
+      <div class="mrow re">
+        <span class="mst">Retarder</span>
+        <span class="mnm"><span class="pers">Petr Kroutil</span><span class="amp"> · </span><span class="pers">Pavel Kroutil</span></span>
+      </div>
+      <div class="mrow po">
+        <span class="mst">Pokladna</span>
+        <span class="mnm"><span class="pers">Jakub Čalkovský</span><span class="amp"> · </span><span class="pers">Cyril Jiráček</span></span>
+      </div></div><div class="mcard"><div class="mtime">17:30–20:00</div>
+      <div class="mrow hl">
+        <span class="mst">Hlavní</span>
+        <span class="mnm"><span class="pers">Lukáš Devetter</span><span class="amp"> · </span><span class="pers">Ondřej Vlček<sup class="mk mk-reg">**</sup></span></span>
+      </div>
+      <div class="mrow za">
+        <span class="mst">Záložní</span>
+        <span class="mnm"><span class="pers">Mikuláš Jiráček</span><span class="amp"> · </span><span class="pers">Maxmilián Jáger<sup class="mk mk-reg">**</sup></span></span>
+      </div>
+      <div class="mrow re">
+        <span class="mst">Retarder</span>
+        <span class="mnm"><span class="pers">Vojta Drga</span><span class="amp"> · </span><span class="pers">Kryštof Fiala</span></span>
+      </div>
+      <div class="mrow po">
+        <span class="mst">Pokladna</span>
+        <span class="mnm"><span class="pers">Patrik Sukovatý</span><span class="amp"> · </span><span class="pers">Jakub Pernikář<sup class="mk mk-reg">**</sup></span></span>
+      </div></div></div>
+  </section>
+
+  <section class="day" id="day-ne">
+    <header class="dhead">
+      <div class="dtitle"><span class="ddow">Neděle</span><span class="ddate">12. 7.</span></div>
+      <p class="dnote">Poslední den – odpolední směny (od 15:30) přizpůsobte skutečnému konci programu, klidně je zkraťte nebo zrušte.</p>
+    </header>
+
+    <div class="allhands">
+      <div class="ah-time">7:45</div>
+      <div class="ah-body">
+        <strong>Všichni – ranní nástup a příprava stanovišť.</strong>
+        <div class="ah-list"><span class="hp">David Ševčík</span><span class="hp">Karel Devetter</span><span class="hp">Patrik Sukovatý</span><span class="hp">Lukáš Devetter</span><span class="hp">Petr Kroutil</span><span class="hp">Vojta Drga</span><span class="hp">Pavel Kroutil</span><span class="hp">Kryštof Fiala</span><span class="hp">Cyril Jiráček</span><span class="hp">Mikuláš Jiráček</span><span class="hp">Jakub Čalkovský</span><span class="hp">Jakub Pernikář<sup class="mk mk-reg">**</sup></span><span class="hp">Ondřej Vlček<sup class="mk mk-reg">**</sup></span><span class="hp">Maxmilián Jáger<sup class="mk mk-reg">**</sup></span><span class="hp">Jáchym Kroča<sup class="mk mk-flex">***</sup></span><span class="hp">Adam Beneš<sup class="mk mk-flex">Z</sup></span></div>
+      </div>
+    </div>
+
+    <div class="tablewrap">
+      <table class="grid">
+        <thead>
+          <tr>
+            <th class="tcol">Čas</th>
+            <th class="hl">Parkoviště hlavní</th>
+            <th class="za">Parkoviště záložní</th>
+            <th class="re">Retarder</th>
+            <th class="po">Pokladna</th>
+          </tr>
+        </thead>
+        <tbody><tr><th class="tcol" scope="row">9:30–11:30</th><td class="c hl"><div class="duo"><span class="pers">David Ševčík</span><span class="pers">Karel Devetter</span></div></td><td class="c za"><div class="duo"><span class="pers">Jakub Čalkovský</span><span class="pers">Cyril Jiráček</span></div></td><td class="c re"><div class="duo"><span class="pers">Patrik Sukovatý</span><span class="pers">Jakub Pernikář<sup class="mk mk-reg">**</sup></span></div></td><td class="c po"><div class="duo"><span class="pers">Lukáš Devetter</span><span class="pers">Ondřej Vlček<sup class="mk mk-reg">**</sup></span></div></td></tr><tr><th class="tcol" scope="row">11:30–13:30</th><td class="c hl"><div class="duo"><span class="pers">Petr Kroutil</span><span class="pers">Pavel Kroutil</span></div></td><td class="c za"><div class="duo"><span class="pers">Vojta Drga</span><span class="pers">Kryštof Fiala</span></div></td><td class="c re"><div class="duo"><span class="pers">Mikuláš Jiráček</span><span class="pers">Maxmilián Jáger<sup class="mk mk-reg">**</sup></span></div></td><td class="c po"><div class="duo res"><span class="pers">Jáchym Kroča<sup class="mk mk-flex">***</sup></span><span class="pers">Adam Beneš<sup class="mk mk-flex">Z</sup></span></div></td></tr><tr><th class="tcol" scope="row">13:30–15:30</th><td class="c hl"><div class="duo"><span class="pers">Lukáš Devetter</span><span class="pers">Ondřej Vlček<sup class="mk mk-reg">**</sup></span></div></td><td class="c za"><div class="duo"><span class="pers">David Ševčík</span><span class="pers">Karel Devetter</span></div></td><td class="c re"><div class="duo"><span class="pers">Jakub Čalkovský</span><span class="pers">Cyril Jiráček</span></div></td><td class="c po"><div class="duo"><span class="pers">Patrik Sukovatý</span><span class="pers">Jakub Pernikář<sup class="mk mk-reg">**</sup></span></div></td></tr><tr><th class="tcol" scope="row">15:30–17:30</th><td class="c hl"><div class="duo res"><span class="pers">Jáchym Kroča<sup class="mk mk-flex">***</sup></span><span class="pers">Adam Beneš<sup class="mk mk-flex">Z</sup></span></div></td><td class="c za"><div class="duo"><span class="pers">Petr Kroutil</span><span class="pers">Pavel Kroutil</span></div></td><td class="c re"><div class="duo"><span class="pers">Vojta Drga</span><span class="pers">Kryštof Fiala</span></div></td><td class="c po"><div class="duo"><span class="pers">Mikuláš Jiráček</span><span class="pers">Maxmilián Jáger<sup class="mk mk-reg">**</sup></span></div></td></tr><tr><th class="tcol" scope="row">17:30–20:00</th><td class="c hl"><div class="duo"><span class="pers">Patrik Sukovatý</span><span class="pers">Jakub Pernikář<sup class="mk mk-reg">**</sup></span></div></td><td class="c za"><div class="duo"><span class="pers">Lukáš Devetter</span><span class="pers">Ondřej Vlček<sup class="mk mk-reg">**</sup></span></div></td><td class="c re"><div class="duo"><span class="pers">David Ševčík</span><span class="pers">Karel Devetter</span></div></td><td class="c po"><div class="duo"><span class="pers">Jakub Čalkovský</span><span class="pers">Cyril Jiráček</span></div></td></tr></tbody>
+      </table>
+    </div>
+
+    <div class="cards"><div class="mcard"><div class="mtime">9:30–11:30</div>
+      <div class="mrow hl">
+        <span class="mst">Hlavní</span>
+        <span class="mnm"><span class="pers">David Ševčík</span><span class="amp"> · </span><span class="pers">Karel Devetter</span></span>
+      </div>
+      <div class="mrow za">
+        <span class="mst">Záložní</span>
+        <span class="mnm"><span class="pers">Jakub Čalkovský</span><span class="amp"> · </span><span class="pers">Cyril Jiráček</span></span>
+      </div>
+      <div class="mrow re">
+        <span class="mst">Retarder</span>
+        <span class="mnm"><span class="pers">Patrik Sukovatý</span><span class="amp"> · </span><span class="pers">Jakub Pernikář<sup class="mk mk-reg">**</sup></span></span>
+      </div>
+      <div class="mrow po">
+        <span class="mst">Pokladna</span>
+        <span class="mnm"><span class="pers">Lukáš Devetter</span><span class="amp"> · </span><span class="pers">Ondřej Vlček<sup class="mk mk-reg">**</sup></span></span>
+      </div></div><div class="mcard"><div class="mtime">11:30–13:30</div>
+      <div class="mrow hl">
+        <span class="mst">Hlavní</span>
+        <span class="mnm"><span class="pers">Petr Kroutil</span><span class="amp"> · </span><span class="pers">Pavel Kroutil</span></span>
+      </div>
+      <div class="mrow za">
+        <span class="mst">Záložní</span>
+        <span class="mnm"><span class="pers">Vojta Drga</span><span class="amp"> · </span><span class="pers">Kryštof Fiala</span></span>
+      </div>
+      <div class="mrow re">
+        <span class="mst">Retarder</span>
+        <span class="mnm"><span class="pers">Mikuláš Jiráček</span><span class="amp"> · </span><span class="pers">Maxmilián Jáger<sup class="mk mk-reg">**</sup></span></span>
+      </div>
+      <div class="mrow po">
+        <span class="mst">Pokladna</span>
+        <span class="mnm"><span class="pers">Jáchym Kroča<sup class="mk mk-flex">***</sup></span><span class="amp"> · </span><span class="pers">Adam Beneš<sup class="mk mk-flex">Z</sup></span></span>
+      </div></div><div class="mcard"><div class="mtime">13:30–15:30</div>
+      <div class="mrow hl">
+        <span class="mst">Hlavní</span>
+        <span class="mnm"><span class="pers">Lukáš Devetter</span><span class="amp"> · </span><span class="pers">Ondřej Vlček<sup class="mk mk-reg">**</sup></span></span>
+      </div>
+      <div class="mrow za">
+        <span class="mst">Záložní</span>
+        <span class="mnm"><span class="pers">David Ševčík</span><span class="amp"> · </span><span class="pers">Karel Devetter</span></span>
+      </div>
+      <div class="mrow re">
+        <span class="mst">Retarder</span>
+        <span class="mnm"><span class="pers">Jakub Čalkovský</span><span class="amp"> · </span><span class="pers">Cyril Jiráček</span></span>
+      </div>
+      <div class="mrow po">
+        <span class="mst">Pokladna</span>
+        <span class="mnm"><span class="pers">Patrik Sukovatý</span><span class="amp"> · </span><span class="pers">Jakub Pernikář<sup class="mk mk-reg">**</sup></span></span>
+      </div></div><div class="mcard"><div class="mtime">15:30–17:30</div>
+      <div class="mrow hl">
+        <span class="mst">Hlavní</span>
+        <span class="mnm"><span class="pers">Jáchym Kroča<sup class="mk mk-flex">***</sup></span><span class="amp"> · </span><span class="pers">Adam Beneš<sup class="mk mk-flex">Z</sup></span></span>
+      </div>
+      <div class="mrow za">
+        <span class="mst">Záložní</span>
+        <span class="mnm"><span class="pers">Petr Kroutil</span><span class="amp"> · </span><span class="pers">Pavel Kroutil</span></span>
+      </div>
+      <div class="mrow re">
+        <span class="mst">Retarder</span>
+        <span class="mnm"><span class="pers">Vojta Drga</span><span class="amp"> · </span><span class="pers">Kryštof Fiala</span></span>
+      </div>
+      <div class="mrow po">
+        <span class="mst">Pokladna</span>
+        <span class="mnm"><span class="pers">Mikuláš Jiráček</span><span class="amp"> · </span><span class="pers">Maxmilián Jáger<sup class="mk mk-reg">**</sup></span></span>
+      </div></div><div class="mcard"><div class="mtime">17:30–20:00</div>
+      <div class="mrow hl">
+        <span class="mst">Hlavní</span>
+        <span class="mnm"><span class="pers">Patrik Sukovatý</span><span class="amp"> · </span><span class="pers">Jakub Pernikář<sup class="mk mk-reg">**</sup></span></span>
+      </div>
+      <div class="mrow za">
+        <span class="mst">Záložní</span>
+        <span class="mnm"><span class="pers">Lukáš Devetter</span><span class="amp"> · </span><span class="pers">Ondřej Vlček<sup class="mk mk-reg">**</sup></span></span>
+      </div>
+      <div class="mrow re">
+        <span class="mst">Retarder</span>
+        <span class="mnm"><span class="pers">David Ševčík</span><span class="amp"> · </span><span class="pers">Karel Devetter</span></span>
+      </div>
+      <div class="mrow po">
+        <span class="mst">Pokladna</span>
+        <span class="mnm"><span class="pers">Jakub Čalkovský</span><span class="amp"> · </span><span class="pers">Cyril Jiráček</span></span>
+      </div></div></div>
+  </section>
+
+  <footer class="foot">
+    <p>Rozpis je návrh vedoucího parkingu – dvojice i rozdělení směn mezi dny lze podle potřeby prohodit. Rezervní dvojici (Jáchym + Adam) ber jako flex.</p>
+  </footer>
+</div>
+</body>
+</html>
